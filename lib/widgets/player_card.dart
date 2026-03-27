@@ -21,15 +21,23 @@ class PlayerCard extends StatelessWidget {
     required this.availableWidth,
   });
 
+  // Layout constants
+  static const double _maxCardWidth = 220.0;
+  static const double _horizontalPadding = 40.0;
+  static const double _frameSizeRatio = 0.85;
+  static const double _sealToFrameRatio = 0.55;
+  static const double _sealOverlapRatio = 0.1;
+  static const double _frameContentPaddingRatio = 0.16;
+
   @override
   Widget build(BuildContext context) {
     // Calculate sizing based on available width and number of players
     final cardWidth = min(
-      220.0,
-      (availableWidth - 40) / max(totalPlayers, 1),
+      _maxCardWidth,
+      (availableWidth - _horizontalPadding) / max(totalPlayers, 1),
     );
-    final frameSize = cardWidth * 0.85;
-    final sealSize = frameSize * 0.55;
+    final frameSize = cardWidth * _frameSizeRatio;
+    final sealSize = frameSize * _sealToFrameRatio;
 
     return Container(
       width: cardWidth,
@@ -40,9 +48,9 @@ class PlayerCard extends StatelessWidget {
         children: [
           // Gold picture frame with player name/photo inside
           _buildFrame(frameSize),
-          // Red wax seal with score
+          // Red wax seal with score, slightly overlapping the frame
           Transform.translate(
-            offset: Offset(0, -sealSize * 0.1),
+            offset: Offset(0, -sealSize * _sealOverlapRatio),
             child: _buildSeal(sealSize),
           ),
         ],
@@ -61,7 +69,7 @@ class PlayerCard extends StatelessWidget {
           // Player content inside the frame (positioned behind the frame)
           Positioned.fill(
             child: Padding(
-              padding: EdgeInsets.all(size * 0.16),
+              padding: EdgeInsets.all(size * _frameContentPaddingRatio),
               child: _buildPlayerContent(),
             ),
           ),
