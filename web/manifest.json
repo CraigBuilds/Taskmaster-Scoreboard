@@ -1,0 +1,11 @@
+{
+    "name": "Taskmaster Scoreboard",
+    "short_name": "Taskmaster",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#1a1a2e",
+    "theme_color": "#e6b800",
+    "description": "A live Taskmaster scoreboard web app with real-time updates.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false
+}
