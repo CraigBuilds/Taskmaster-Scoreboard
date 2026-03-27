@@ -1,5 +1,10 @@
 # Taskmaster Scoreboard
 
+[![CI](https://github.com/CraigBuilds/Taskmaster-Scoreboard/actions/workflows/ci.yml/badge.svg)](https://github.com/CraigBuilds/Taskmaster-Scoreboard/actions/workflows/ci.yml)
+[![Deploy to GitHub Pages](https://github.com/CraigBuilds/Taskmaster-Scoreboard/actions/workflows/deploy.yml/badge.svg)](https://github.com/CraigBuilds/Taskmaster-Scoreboard/actions/workflows/deploy.yml)
+
+**🎬 Live demo: [https://craigbuilds.github.io/Taskmaster-Scoreboard/](https://craigbuilds.github.io/Taskmaster-Scoreboard/)**
+
 A live Taskmaster scoreboard web app built with Flutter. It displays the scores of 5 players (each with an avatar), ordered by points. Multiple web browsers can connect and view the live scoreboard, and an admin panel allows the Taskmaster's assistant to edit scores and trigger real-time updates.
 
 ## Features
