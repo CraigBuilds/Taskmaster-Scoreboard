@@ -61,6 +61,49 @@ dart run bin/server.dart --password your_secret_password
 
 Or set the `ADMIN_PASSWORD` environment variable.
 
+## Sharing on the same Wi-Fi
+
+No code changes are needed. Once the server is running on your laptop, anyone on the **same Wi-Fi network** can connect from their phone or browser.
+
+### 1. Run the app on your laptop
+
+Follow the [Getting Started](#getting-started) steps above. The server listens on port **8080** by default.
+
+### 2. Find your laptop's LAN IP address
+
+| OS | Command | Look for |
+|----|---------|----------|
+| Windows | `ipconfig` | **IPv4 Address** under your Wi-Fi adapter |
+| macOS | `ifconfig \| grep inet` | `inet 192.168.x.x` (not `127.0.0.1`) |
+| Linux | `ip a` | `inet 192.168.x.x` or `inet 10.x.x.x` |
+
+Example result: `192.168.1.50`
+
+### 3. Have everyone open the app on their phone or browser
+
+Replace `192.168.1.50` with your actual LAN IP:
+
+- **Scoreboard:** `http://192.168.1.50:8080`
+- **Admin panel:** `http://192.168.1.50:8080/#/admin`
+
+Because the page is served from your laptop, the Flutter app automatically connects its WebSocket back to `ws://192.168.1.50:8080/ws` — no extra configuration required.
+
+> **Note:** `http://localhost:8080` only works on your own machine. Remote devices must use the host's LAN IP address.
+
+### Troubleshooting
+
+- **Can't connect at all** — Make sure the phone is on the **same Wi-Fi network** as your laptop (not cellular, not a guest network). Many guest/public Wi-Fi networks isolate devices from each other.
+- **Connection refused or timed out** — Your laptop **firewall** may be blocking inbound connections on port 8080. Allow the port (or the Dart executable) through your firewall:
+  - *Windows:* Windows Defender Firewall → Advanced Settings → add an inbound rule for TCP port 8080.
+  - *macOS:* System Settings → Network → Firewall → allow incoming connections for Dart.
+  - *Linux:* `sudo ufw allow 8080/tcp` (if using UFW).
+- **Port 8080 is already in use** — Start the server on a different port and use that port in the URL:
+  ```bash
+  dart run bin/server.dart --port 8081
+  ```
+  Then connect to `http://192.168.1.50:8081`.
+- **Scores don't update in real time** — Check that the browser's address bar shows the LAN IP (not `localhost`). If it shows `localhost`, the WebSocket will also try to connect to `localhost` on the remote device, which will fail.
+
 ## Server Options
 
 ```
