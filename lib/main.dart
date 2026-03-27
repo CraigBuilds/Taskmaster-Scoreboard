@@ -46,11 +46,11 @@ class _TaskmasterAppState extends State<TaskmasterApp> {
         theme: ThemeData(
           brightness: Brightness.dark,
           primaryColor: const Color(0xFFE6B800),
-          scaffoldBackgroundColor: const Color(0xFF0F3460),
+          scaffoldBackgroundColor: const Color(0xFF2C2C2C),
           colorScheme: const ColorScheme.dark(
             primary: Color(0xFFE6B800),
             secondary: Color(0xFFE6B800),
-            surface: Color(0xFF16213E),
+            surface: Color(0xFF3A3A3A),
           ),
         ),
         initialRoute: '/',
